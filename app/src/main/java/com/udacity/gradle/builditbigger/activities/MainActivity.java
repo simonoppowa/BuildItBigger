@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.github.simonoppowa.javajokeslib.JokeTeller;
 import com.udacity.gradle.builditbigger.R;
 
 import butterknife.ButterKnife;
@@ -50,8 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view){
-        Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
+        String joke = JokeTeller.getJoke();
+        Toast.makeText(this, joke, Toast.LENGTH_SHORT).show();
     }
-
-
 }
