@@ -1,4 +1,4 @@
-package com.udacity.gradle.builditbigger;
+package com.udacity.gradle.builditbigger.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.udacity.gradle.builditbigger.R;
+
+import butterknife.ButterKnife;
+import timber.log.Timber;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,6 +19,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //set up libraries
+        Timber.plant(new Timber.DebugTree());
+        ButterKnife.bind(this);
+
     }
 
 

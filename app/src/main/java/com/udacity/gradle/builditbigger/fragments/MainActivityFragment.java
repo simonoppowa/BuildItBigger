@@ -1,4 +1,4 @@
-package com.udacity.gradle.builditbigger;
+package com.udacity.gradle.builditbigger.fragments;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -8,6 +8,10 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.udacity.gradle.builditbigger.R;
+
+import butterknife.ButterKnife;
+import timber.log.Timber;
 
 
 /**
@@ -22,6 +26,10 @@ public class MainActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
+
+        Timber.plant(new Timber.DebugTree());
+        ButterKnife.bind(this, root);
+
 
         AdView mAdView = (AdView) root.findViewById(R.id.adView);
         // Create an ad request. Check logcat output for the hashed device ID to
