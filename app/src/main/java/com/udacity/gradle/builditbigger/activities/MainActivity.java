@@ -1,14 +1,15 @@
 package com.udacity.gradle.builditbigger.activities;
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.github.simonoppowa.androidjokeslib.JokeDisplayActivity;
 import com.github.simonoppowa.javajokeslib.JokeTeller;
+import com.udacity.gradle.builditbigger.tasks.JokeAsyncTask;
 import com.udacity.gradle.builditbigger.R;
 
 import butterknife.ButterKnife;
@@ -54,9 +55,7 @@ public class MainActivity extends AppCompatActivity {
     public void tellJoke(View view){
         String joke = JokeTeller.getJoke();
 
-        //start new JokeDisplayActivity
-        Intent jokeIntent = new Intent(this, JokeDisplayActivity.class);
-        jokeIntent.putExtra(JokeDisplayActivity.JOKE_INTENT_KEY, joke);
-        startActivity(jokeIntent);
+        new JokeAsyncTask().execute(new Pair<Context, String>(this, joke));
+
     }
 }
