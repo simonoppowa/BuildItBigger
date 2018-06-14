@@ -1,16 +1,13 @@
 package com.udacity.gradle.builditbigger.activities;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.github.simonoppowa.javajokeslib.JokeTeller;
-import com.udacity.gradle.builditbigger.tasks.JokeAsyncTask;
 import com.udacity.gradle.builditbigger.R;
+import com.udacity.gradle.builditbigger.tasks.JokeAsyncTask;
 
 import butterknife.ButterKnife;
 import timber.log.Timber;
@@ -28,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -53,9 +49,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view){
-        String joke = JokeTeller.getJoke();
-
-        new JokeAsyncTask().execute(new Pair<Context, String>(this, joke));
-
+        new JokeAsyncTask(this).execute();
     }
 }

@@ -47,7 +47,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-intents:3.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.2'
 
-    implementation project(path: ':javaJokesLib')
     implementation project(path: ':androidjokeslib')
     implementation 'com.google.http-client:google-http-client-android:1.23.0'
     implementation 'com.google.api-client:google-api-client:1.23.0'
