@@ -20,10 +20,16 @@ public class JokeAsyncTask extends AsyncTask<Void, Void, String> {
 
     private static MyApi myApiService = null;
     private Context context;
+    private OnTaskCompleted mCallback;
+
+    public interface OnTaskCompleted {
+        void onTaskCompleted();
+    }
 
 
-    public JokeAsyncTask(Context context) {
+    public JokeAsyncTask(Context context, OnTaskCompleted callback) {
         this.context = context;
+        this.mCallback = callback;
     }
 
     @Override
@@ -56,6 +62,9 @@ public class JokeAsyncTask extends AsyncTask<Void, Void, String> {
         //start new JokeDisplayActivity
         Intent jokeIntent = new Intent(context, JokeDisplayActivity.class);
         jokeIntent.putExtra(JokeDisplayActivity.JOKE_INTENT_KEY, result);
+        jokeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(jokeIntent);
+
+        mCallback.onTaskCompleted();
     }
 }

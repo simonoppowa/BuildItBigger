@@ -5,15 +5,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.udacity.gradle.builditbigger.R;
 import com.udacity.gradle.builditbigger.tasks.JokeAsyncTask;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements JokeAsyncTask.OnTaskCompleted{
+
+    @BindView(R.id.fragment)
+    public View mFragment;
+
+    @BindView(R.id.joke_loading_progressBar)
+    public ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +56,23 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void showFragment() {
+        mProgressBar.setVisibility(View.GONE);
+        mFragment.setVisibility(View.VISIBLE);
+    }
+
+    private void showProgressBar() {
+        mFragment.setVisibility(View.GONE);
+        mProgressBar.setVisibility(View.VISIBLE);
+    }
+
     public void tellJoke(View view){
-        new JokeAsyncTask(this).execute();
+        showProgressBar();
+        new JokeAsyncTask(this, this).execute();
+    }
+
+    @Override
+    public void onTaskCompleted() {
+        showFragment();
     }
 }
