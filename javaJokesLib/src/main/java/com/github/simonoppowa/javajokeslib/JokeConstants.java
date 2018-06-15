@@ -1,6 +1,6 @@
 package com.github.simonoppowa.javajokeslib;
 
-public class JokeConstants {
+class JokeConstants {
 
     public static final String[] JOKE = {
             "Knock knock.\n" + "Race condition.\n" + "Who's there?",

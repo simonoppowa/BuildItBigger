@@ -19,8 +19,8 @@ public class JokeAsyncTask extends AsyncTask<Void, Void, String> {
     private static final String GENYMOTION_VIRTUAL_EMULATOR_URL = "http://10.0.3.2:8080/_ah/api/";
 
     private static MyApi myApiService = null;
-    private Context context;
-    private OnTaskCompleted mCallback;
+    private final Context context;
+    private final OnTaskCompleted mCallback;
 
     public interface OnTaskCompleted {
         void onTaskCompleted();
@@ -43,7 +43,7 @@ public class JokeAsyncTask extends AsyncTask<Void, Void, String> {
                     .setRootUrl(GENYMOTION_VIRTUAL_EMULATOR_URL)
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
-                        public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
+                        public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) {
                             abstractGoogleClientRequest.setDisableGZipContent(true);
                         }
                     });

@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application>
-        <activity android:name=".JokeDisplayActivity"></activity>
+        <activity android:name=".JokeDisplayActivity" />
     </application>
 
 </manifest>
