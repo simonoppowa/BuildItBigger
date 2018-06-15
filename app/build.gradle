@@ -29,12 +29,24 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions("dimension")
+    productFlavors {
+        free {
+            dimension "dimension"
+            applicationId "com.udacity.gradle.builditbigger.free"
+        }
+        paid {
+            dimension "dimension"
+            applicationId "com.udacity.gradle.builditbigger.paid"
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation ('com.google.android.gms:play-services-ads:15.0.1') {
+    implementation('com.google.android.gms:play-services-ads:15.0.1') {
         //dependency conflict
         exclude group: 'com.android.support'
     }
@@ -42,6 +54,7 @@ dependencies {
 
     implementation 'com.jakewharton.timber:timber:4.7.0'
     implementation 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.android.support:support-v4:27.1.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     testImplementation 'junit:junit:4.12'

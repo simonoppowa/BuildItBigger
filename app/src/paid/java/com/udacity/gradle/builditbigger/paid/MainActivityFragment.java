@@ -1,4 +1,4 @@
-package com.udacity.gradle.builditbigger.fragments;
+package com.udacity.gradle.builditbigger.paid;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -25,20 +25,11 @@ public class MainActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_main, container, false);
+        View root = inflater.inflate(R.layout.fragment_main_activity, container, false);
 
         Timber.plant(new Timber.DebugTree());
         ButterKnife.bind(this, root);
 
-
-        AdView mAdView = (AdView) root.findViewById(R.id.adView);
-        // Create an ad request. Check logcat output for the hashed device ID to
-        // get test ads on a physical device. e.g.
-        // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .build();
-        mAdView.loadAd(adRequest);
         return root;
     }
 }
