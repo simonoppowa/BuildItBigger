@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.udacity.gradle.builditbigger.R;
 
 import butterknife.ButterKnife;
@@ -18,6 +19,10 @@ import timber.log.Timber;
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment {
+
+    private static final String INTERSTITIAL_AD_TEST_ID = "ca-app-pub-3940256099942544/1033173712";
+
+    private InterstitialAd mInterstitialAd;
 
     public MainActivityFragment() {
     }
@@ -39,6 +44,29 @@ public class MainActivityFragment extends Fragment {
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .build();
         mAdView.loadAd(adRequest);
+
         return root;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Timber.d("InterstitialAd wasn't loaded yet");
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadInterstitialAd();
+    }
+
+    public void loadInterstitialAd() {
+        mInterstitialAd = new InterstitialAd(getActivity());
+        mInterstitialAd.setAdUnitId(INTERSTITIAL_AD_TEST_ID);
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
     }
 }
