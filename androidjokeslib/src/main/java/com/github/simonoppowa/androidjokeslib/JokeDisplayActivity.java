@@ -1,5 +1,6 @@
 package com.github.simonoppowa.androidjokeslib;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -35,5 +36,11 @@ public class JokeDisplayActivity extends AppCompatActivity {
         }
 
         mJokeTextView.setText(mJoke);
+    }
+
+    public static Intent newIntent(Context context, String joke) {
+        Intent intent = new Intent(context, JokeDisplayActivity.class);
+        intent.putExtra(JOKE_INTENT_KEY, joke);
+        return intent;
     }
 }

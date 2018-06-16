@@ -58,11 +58,9 @@ public class JokeAsyncTask extends AsyncTask<Void, Void, String> {
         }
     }
     @Override
-    protected void onPostExecute(String result) {
+    protected void onPostExecute(String joke) {
         //start new JokeDisplayActivity
-        Intent jokeIntent = new Intent(context, JokeDisplayActivity.class);
-        jokeIntent.putExtra(JokeDisplayActivity.JOKE_INTENT_KEY, result);
-        jokeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent jokeIntent = JokeDisplayActivity.newIntent(context, joke);
         context.startActivity(jokeIntent);
 
         mCallback.onTaskCompleted();
